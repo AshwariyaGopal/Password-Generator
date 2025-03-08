@@ -1,5 +1,4 @@
-# (without css)
-# import streamlit as st
+import streamlit as st      # (without css)
 # import random 
 # import string
 
@@ -35,7 +34,6 @@
     
 
  # (with css)
-import streamlit as st
 import random
 import string
 
