@@ -34,13 +34,11 @@
 
     
 
-
-# (with css)
-
+ # (with css)
 import streamlit as st
 import random
 import string
-import pyperclip  # type: ignore # For copying password to clipboard
+
 
 st.set_page_config(page_title="Password Generator", page_icon="🔒", layout="centered")
 
@@ -49,9 +47,9 @@ st.markdown("""
 <style>
     .stApp { background-color: #f5f5f5; }
     .big-font { font-size: 28px !important; font-weight: bold; color: #1E3D59; }
-    .stButton>button 
-    { background-color: #17B794 !important; color: white !important; font-weight: bold; border: none; padding: 15px !important; font-size: 16px !important; width: 100% !important;
-                margin-top: 30px !important;  /* Added spacing between buttons */ }
+    .stButton>button { 
+    background-color: #17B794 !important; color: white !important; font-weight: bold; border: none; padding: 15px !important; font-size: 16px !important; width: 100% !important;
+    margin-top: 30px !important;  /* Added spacing between buttons */ }
     .stSlider label, .standard-text { color: #1E3D59 !important; font-size: 16px !important; font-weight: 500 !important; }
     
     /* Darker Background for Password Display */
@@ -74,6 +72,10 @@ st.markdown("""
         margin-top: 20px !important;
         text-align: left !important;
     }
+     .footer {
+        margin-top:40px !important
+        text-align: center !important
+            }
 </style>
 """, unsafe_allow_html=True)
 
@@ -123,14 +125,15 @@ if "password" not in st.session_state:
 if st.button("🔐 Generate Strong Password", use_container_width=True):
     st.session_state["password"] = generate_password(length, use_digits, use_special)
 
-# dispay password
+# Display password
 if st.session_state["password"]:
     st.markdown('<p class="password-heading">🔑 Your Password:</p>', unsafe_allow_html=True)  # Added heading
     st.markdown(f"""
         <div class="password-box">{st.session_state['password']}</div>
     """, unsafe_allow_html=True)
 
-    # Copy button with feedback
-    if st.button("📋 Copy Password"):
-        pyperclip.copy(st.session_state["password"])
-        st.success("✅ Password copied to clipboard!")
+st.markdown("""
+<p class="footer" style="margin-top: 40px; text-align: center;">
+    Made with 💕 by <a href="https://github.com/AshwariyaGopal" target="_blank" style="color: #17B794; font-weight: bold; text-decoration: none;">Ashwariya</a>
+</p>
+""", unsafe_allow_html=True)
